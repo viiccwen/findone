@@ -98,7 +98,9 @@ export const Game = () => {
       | Int32Array<ArrayBufferLike>
   ): string => {
     // assume the first class is 'phone'
-    return "phone";
+    if (predictionArray)
+      return "phone";
+    else return "pencil";
   };
 
   const handleRestart = () => {

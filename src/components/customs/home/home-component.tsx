@@ -22,6 +22,7 @@ export const Home = () => {
         <Button onClick={() => handleStart(30)}>30 s</Button>
         <Button onClick={() => handleStart(60)}>60 s</Button>
         <Button onClick={() => handleStart(90)}>90 s</Button>
+        <ThemeToggle />
       </div>
     </div>
   );

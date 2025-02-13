@@ -17,20 +17,23 @@ export const CameraCheck = () => {
         });
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
-          videoRef.current.play();
+          await videoRef.current.play();
         }
         setCameraActive(true);
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("can't load camera", error);
-        setErrorMessage("Can't load camera, please allow camera access or check camera status!");
+        setErrorMessage(
+          "Can't load camera, please allow camera access or check camera status!"
+        );
       }
     }
     initCamera();
 
+    const localVideo = videoRef.current;
     // clean up: stop camera stream when component unmounts
     return () => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
+      if (localVideo && localVideo.srcObject) {
+        const tracks = (localVideo.srcObject as MediaStream).getTracks();
         tracks.forEach((track) => track.stop());
       }
     };
